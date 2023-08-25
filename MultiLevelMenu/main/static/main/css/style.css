@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+body{
+    min-height: 100vh;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.wrapper{
+    max-width: 1440px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.header{
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__nav{
+    width: 600px;
+}
+
+
+.header__menu{
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu__item{
+    /* padding: 5px 10px; */
+    background-color: #444;
+    position: relative;
+    width: 140px;
+    height: 40px;
+}
+
+.menu__children-list{
+    position: absolute;
+}
+
+.menu__children-list  .menu__children-list{
+    top: 0;
+    left: 100%;
+}
+
+
+.main{
+    flex: 1;
+}
