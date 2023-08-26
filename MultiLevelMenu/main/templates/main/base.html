@@ -35,31 +35,44 @@
                             {% if not node.is_leaf_node %}
                                 <ul class="menu__children-list">
                                     {{ children }}
+                                    <div class="arrow"></div>
                                 </ul>
                             {% endif %}
                         </li>
                     {% endrecursetree %}
                     </ul>
             </nav>
-            
-            <form class="header__form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                <input class="header__input" name="next" type="hidden" value="{{ redirect_to }}">
-                <select class="header__select" name="language">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                    {{ language.name_local }} 
-                </option>
+
+            <div class="header__leanguage-switch">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_language_info for LANGUAGE_CODE as current_language %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                <div class="language-switch__language">
+                    <a class="language-switch__language-name" href="/{{ current_language.code }}">
+                    {{ current_language.name_local }}
+                    </a>
+                </div>
+                <i class="fa-solid fa-caret-down arrow"></i>
+                <ul class="language-switch__available-laguages">
+                    {% for lang in languages %}
+                        {% if lang.code != LANGUAGE_CODE %}
+                        <li class="language-switch__language">
+                            <a class="language-switch__language-name" href="/{{ lang.code }}">
+                                {{ lang.name_local }}
+                            </a>
+                        </li>
+                        {% endif %}
                     {% endfor %}
-                </select>
-                <input class="header__submit-input" type="submit" value="Go">
-            </form>
+                </ul>
+            </div>
+
         </header>
             {% block content %}
             {% endblock %}
-        <footer class="footer">Test 2023</footer>
+        <footer class="footer"></footer>
+
+        <script src="{% static 'main/js/script.js' %}"></script>
     </div>
 </body>
 </html>
