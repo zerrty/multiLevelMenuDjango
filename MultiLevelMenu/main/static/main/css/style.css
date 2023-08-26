@@ -58,6 +58,7 @@ body{
     width: 140px;
     height: 50px;
     transition: all ease 300ms;
+    z-index: 2;
 }
 
 .menu__item:hover > .menu__children-list{
@@ -83,6 +84,8 @@ body{
     color: var(--main-color);
     transition: all ease 300ms;
     font-weight: 700;
+    position: relative;
+    z-index: 10;
 }
 
 
@@ -122,9 +125,6 @@ body{
 }
 
 
-
-
-
 .menu__children-list  .menu__children-list{
     top: 0;
     left: 100%;
@@ -134,31 +134,26 @@ body{
 }
 
 
-.header__form{
-    width: 160px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.header__select{
-    appearance: none;
-}
-
-.header__submit-input,
-.header__select{
-    padding: 7px 10px;
+.menu__children-list .arrow{
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    top: -5.5px;
+    left: 32px;
     background-color: var(--main-color);
-    border: none;
-    border-radius: 5px;
+    transform: rotate(45deg);
     cursor: pointer;
-    outline: none;
-    color: var(--secondary-color);
-    font-weight: 700;
+    transition: all ease 300ms;
 }
 
+.menu__children-list .menu__item:first-child:hover ~ .arrow{
+    background-color: var(--secondary-color);
+}
+
+.menu__children-list  .menu__children-list .arrow{
+    top: 10px;
+    left: 5.3px;
+}
 
 .header__leanguage-switch {
     position: relative;
@@ -205,8 +200,8 @@ body{
     box-shadow: 0 2px 4px rgba(0, 0, 0, .322);
     cursor: pointer;
     width: 100%;
+    overflow: hidden;
     max-height: 250px;
-    overflow-y: scroll;
     transform: translateY(10px);
     opacity: 0;
     pointer-events: none;
