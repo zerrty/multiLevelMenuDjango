@@ -68,30 +68,7 @@ body{
 
 
 
-.header__form{
-    width: 160px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
 
-.header__select{
-    appearance: none;
-}
-
-.header__submit-input,
-.header__select{
-    padding: 7px 10px;
-    background-color: var(--main-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    outline: none;
-    color: var(--secondary-color);
-    font-weight: 700;
-}
 
 
 
@@ -156,6 +133,101 @@ body{
     transform: translateX(10px);
 }
 
+
+.header__form{
+    width: 160px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.header__select{
+    appearance: none;
+}
+
+.header__submit-input,
+.header__select{
+    padding: 7px 10px;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+
+.header__leanguage-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--main-color);
+    width: 200px;
+    padding: 7px 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .322);
+}
+
+.header__leanguage-switch .arrow{
+    font-size: 16px;
+    transition: all ease 300ms;
+    transform: rotate(0);
+}
+
+.header__leanguage-switch .arrow._active{
+    transform: rotate(180deg);
+}
+
+
+.language-switch__language {
+    display: flex;
+    align-items: center;
+}
+.language-switch__language-name {
+    color: var(--secondary-color);
+    font-weight: 700;
+    transition: ease all 300ms;
+}
+
+.language-switch__available-laguages{
+    background-color: var(--main-color);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    border-radius: 5px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .322);
+    cursor: pointer;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: scroll;
+    transform: translateY(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all ease 300ms;
+}
+
+.language-switch__available-laguages._show{
+    transform: translate(0, 0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.language-switch__available-laguages .language-switch__language-name{
+    width: 100%;
+    padding: 7px 14px;
+}
+
+.language-switch__available-laguages .language-switch__language-name:hover{
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+}
 
 .main{
     flex: 1;
