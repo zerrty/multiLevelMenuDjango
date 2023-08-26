@@ -15,7 +15,10 @@
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/b9d99bca65.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -24,7 +27,11 @@
                 <ul class="header__menu">
                     {% recursetree categories %}
                         <li class="menu__item">
-                            {{ node.name }}
+                            <a href="#">{{ node.name }} 
+                                {% if not node.is_leaf_node %}
+                                <i class="fa-solid fa-caret-down"></i>
+                                {% endif %}
+                            </a>
                             {% if not node.is_leaf_node %}
                                 <ul class="menu__children-list">
                                     {{ children }}
@@ -35,25 +42,23 @@
                     </ul>
             </nav>
             
-            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select name="language">
+            <form class="header__form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input class="header__input" name="next" type="hidden" value="{{ redirect_to }}">
+                <select class="header__select" name="language">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for language in languages %}
                 <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                    {{ language.name_local }} ({{ language.code }})
+                    {{ language.name_local }} 
                 </option>
                     {% endfor %}
                 </select>
-                <input type="submit" value="Go">
+                <input class="header__submit-input" type="submit" value="Go">
             </form>
         </header>
-        <main class="main">
             {% block content %}
             {% endblock %}
-        </main>
         <footer class="footer">Test 2023</footer>
     </div>
 </body>
